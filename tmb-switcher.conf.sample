@@ -40,7 +40,10 @@ port=4028
 # For Linux, uncomment below
 #nscrypt = ./scripts/nscrypt.sh
 #scrypt  = ./scripts/scrypt.sh
+#x11 = ./scripts/x11.sh
 
 # For Windows, uncomment below
 #nscrypt = scripts\nscrypt.bat
 #scrypt  = scripts\scrypt.bat
+#x11  = scripts\x11.bat
+
