@@ -11,7 +11,6 @@ import socket
 import subprocess
 import sys
 import time
-import heapq
 
 from trademybitapi import TradeMyBitAPI
 from pycgminer import CgminerAPI
@@ -27,9 +26,6 @@ class TradeMyBitSwitcher(object):
     def __init__(self):
         # Define supported algo
         self.algos = {}
-        #self.algos['scrypt']  =  Algo('Scrypt')
-        #self.algos['nscrypt'] =  Algo('N-Scrypt')
-        #self.algos['x11'] =  Algo('X11')
 
         self.profitability_log = None
         self.__load_config()
@@ -96,7 +92,7 @@ class TradeMyBitSwitcher(object):
                     algo.append(data[i]["algo"])
                     score.append(float(data[i]["score"]))
             
-            #if not first run through, rank and check to see if we switch, else just use the top algo  
+            #If not first run through, score algo and calculate if we switch, otherwise just use top algo to start
             if self.current_algo is not None :
                 #get the score of the current algo we are mining
                 currentAlgoScore = score[algo.index(self.current_algo)]
@@ -218,8 +214,6 @@ class TradeMyBitSwitcher(object):
         for i in self.algos.keys():
             dateDict.append(i)
         self.profitability_log = csv.DictWriter(self.profitability_file, dateDict)
-        
-        #self.profitability_log = csv.DictWriter(self.profitability_file, ['date', 'scrypt', 'nscrypt'])
 
         if write_header:
             self.profitability_log.writeheader()
